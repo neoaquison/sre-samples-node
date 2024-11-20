@@ -199,9 +199,20 @@ Alterar limite de requisições permitidas para 100 num intervalo de 1 minuto e 
 
 
 ```
-// INSIRA SUA ANÁLISE OU PARECER ABAIXO
+Melhorias Possíveis
 
+Rate Limiter Configurado para Todas as Rotas
 
+O middleware de rate limiting (app.use(limiter)) está aplicado globalmente, afetando todas as rotas, incluindo aquelas que poderiam precisar de uma configuração diferente (por exemplo, /api/health).
+Mensagem de Erro Genérica no Rate Limiter
+
+A mensagem do rate limiter é genérica e pode não fornecer detalhes suficientes sobre a rota ou o contexto em que a limitação ocorreu.
+Falta de Logs para Monitoramento
+
+Não há logs para acompanhar o comportamento das requisições bloqueadas pelo rate limiter, dificultando a análise de possíveis abusos.
+Erro 500 Genérico na Rota /api/ratelimit
+
+O código trata qualquer erro no processamento da rota como 500, sem diferenciar erros internos de limites excedidos.
 
 ```
 
