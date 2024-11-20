@@ -137,7 +137,7 @@ app.get('/', (req, res) => {
 
 A seguir imagem após aplicação das melhorias:
 
-![Imagem](./images/desafio1-timeout.png)
+![Texto Alternativo](./images/desafio1-timeout.png)
 
 ---
 ### 2.2 Rate Limit
