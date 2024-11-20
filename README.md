@@ -111,12 +111,33 @@ Ajustar configurações de timeout e corrigir erro de timeout execedido ao invoc
 ![Screen Shot 2024-09-13 at 21 42 04](https://github.com/user-attachments/assets/a451d1a1-ef3f-4116-8ab0-246d6548b7a3)
 
 ```
-// INSIRA SUA ANÁLISE OU PARECER ABAIXO
+Melhorias Possíveis
+1. A Promisse está sendo executada antes da implementação da lógica do timeout.
+Ao chamar `timeoutPromise(3000, externalService())`, o código está executando a função externalService imediatamente, antes mesmo de a lógica de timeout ser aplicada.
+Isso ocorre porque externalService() é avaliada antes de ser passada para a função timeoutPromise
 
+2. Diferença de tempo
 
+O timeout configurado (3000ms) é menor que o tempo de execução da chamada externa simulada (5000ms), resultando sempre em erro de timeout.
+
+3. Tratamento de Erros Genérico
+
+O código trata todos os erros como 500, sem diferenciar um timeout de outros problemas. Isso não comunica corretamente o que aconteceu ao cliente.
+
+```
+Criamos uma nova rota para deixar a página inicial mais amigável:
+``` bash
+
+// Rota inicial
+app.get('/', (req, res) => {
+    res.send('Bem-vindo ao servidor!');
+});
 
 ```
 
+A seguir imagem após aplicação das melhorias:
+
+![Imagem](/sre-samples-node/images/desafio1-timeout.png)
 
 ---
 ### 2.2 Rate Limit
